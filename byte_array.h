@@ -8,9 +8,9 @@ class ByteArray
 {
 public:
     ByteArray();
-    ByteArray(size_t size, char ch);
+    ByteArray(size_t size, uint8_t ch);
     ByteArray(const ByteArray &other);
-    ByteArray(ByteArray &&other);
+    ByteArray(ByteArray &&other) noexcept;
     ~ByteArray();
 
 public:
@@ -19,15 +19,15 @@ public:
     void chop(size_t n);
     void resize(size_t size);
 
-    ByteArray &append(char ch);
+    ByteArray &append(uint8_t value);
     ByteArray &append(const char *str);
-    ByteArray &append(const ByteArray &);
+    ByteArray &append(const ByteArray &other);
 
-    ByteArray &prepend(char ch);
+    ByteArray &prepend(uint8_t value);
     ByteArray &prepend(const char *str);
     ByteArray &prepend(const ByteArray &);
 
-    ByteArray &fill(char ch, size_t size = 0);
+    ByteArray &fill(uint8_t value, size_t size = 0);
     ByteArray &remove(size_t pos, size_t len);
 
     // accessors
@@ -40,20 +40,25 @@ public:
     // informators
     size_t size() const;
     bool isEmpty() const;
-    bool contains(char ch) const;
-    int indexOf(char ch, size_t from = 0) const;
+    bool contains(uint8_t value) const;
+    int indexOf(uint8_t value, size_t from = 0) const;
 
     // converters
     ByteArray toHex(char separator = '\0') const;
-    ByteArray fromHex(const ByteArray &hexEncoded);
+    static ByteArray fromHex(const ByteArray &hexEncoded);
 
     // string manipulators
     ByteArray trimmed() const;
+    ByteArray toUpper() const;
+    ByteArray toLower() const;
 
     // operators
     ByteArray &operator=(const ByteArray &other);
     ByteArray &operator=(ByteArray &&other) noexcept;
     friend std::ostream &operator<<(std::ostream &out, const ByteArray &byteArray);
+
+    // helpers
+    static uint8_t hexCharToByte(uint8_t hexChar);
 
 private:
     std::vector<uint8_t> *m_byteArray;
