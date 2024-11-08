@@ -30,3 +30,14 @@ In C++, the `std::vector<uint8_t>` is a popular choice for a dynamic
 - `data` – Provides access to the underlying data as a char\*.
 - `fill` – Fills the byte array with a specific character.
 - `trimmed` – Removes whitespace from the beginning and end of the byte array.
+
+## How to Run the Program
+
+If you want to run this program, type `make` in the root of the project:
+
+```bash
+make
+```
+
+#### On Windows
+After this command `main.exe` has created, now you can type `./main` command to run the `.exe` file.
