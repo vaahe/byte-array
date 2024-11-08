@@ -4,7 +4,10 @@
 
 int main()
 {
-    ByteArray *byteArray = new ByteArray();
+    ByteArray byteArray;
+    byteArray.append("dkfjwethj");
+
+    std::cout << byteArray.toUpper();
 
     return 0;
 }
